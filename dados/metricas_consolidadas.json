@@ -1,0 +1,407 @@
+{
+  "panoramaGeral": {
+    "total_sessoes": "25942",
+    "usuarios_unicos": "22910",
+    "total_bounce": "18546",
+    "taxa_bounce_pct": 71.49,
+    "total_com_busca": "4168",
+    "taxa_busca_pct": 16.07,
+    "total_com_mapa": "1250",
+    "taxa_mapa_pct": 4.82,
+    "total_com_adicao": "1359",
+    "taxa_adicao_pct": 5.24,
+    "duracao_media_segundos": 1553.1,
+    "duracao_mediana_segundos": 0
+  },
+  "porDispositivo": [
+    {
+      "dispositivo": "iOS (iPhone)",
+      "total_sessoes": "10373",
+      "share_sessoes_pct": 39.99,
+      "bounce_qtd": "8354",
+      "taxa_bounce_pct": 80.54,
+      "busca_qtd": "1008",
+      "taxa_busca_pct": 9.72,
+      "mapa_qtd": "9",
+      "taxa_mapa_pct": 0.09,
+      "adicao_qtd": "208",
+      "taxa_adicao_pct": 2.01,
+      "duracao_mediana_seg": 0
+    },
+    {
+      "dispositivo": "Android",
+      "total_sessoes": "9257",
+      "share_sessoes_pct": 35.68,
+      "bounce_qtd": "6845",
+      "taxa_bounce_pct": 73.94,
+      "busca_qtd": "1154",
+      "taxa_busca_pct": 12.47,
+      "mapa_qtd": "4",
+      "taxa_mapa_pct": 0.04,
+      "adicao_qtd": "219",
+      "taxa_adicao_pct": 2.37,
+      "duracao_mediana_seg": 0
+    },
+    {
+      "dispositivo": "Windows (Desktop)",
+      "total_sessoes": "5489",
+      "share_sessoes_pct": 21.16,
+      "bounce_qtd": "3064",
+      "taxa_bounce_pct": 55.82,
+      "busca_qtd": "1668",
+      "taxa_busca_pct": 30.39,
+      "mapa_qtd": "1024",
+      "taxa_mapa_pct": 18.66,
+      "adicao_qtd": "797",
+      "taxa_adicao_pct": 14.52,
+      "duracao_mediana_seg": 0
+    },
+    {
+      "dispositivo": "Mac OS X (Desktop)",
+      "total_sessoes": "713",
+      "share_sessoes_pct": 2.75,
+      "bounce_qtd": "221",
+      "taxa_bounce_pct": 31,
+      "busca_qtd": "314",
+      "taxa_busca_pct": 44.04,
+      "mapa_qtd": "201",
+      "taxa_mapa_pct": 28.19,
+      "adicao_qtd": "123",
+      "taxa_adicao_pct": 17.25,
+      "duracao_mediana_seg": 111
+    },
+    {
+      "dispositivo": "Linux (Desktop)",
+      "total_sessoes": "89",
+      "share_sessoes_pct": 0.34,
+      "bounce_qtd": "50",
+      "taxa_bounce_pct": 56.18,
+      "busca_qtd": "21",
+      "taxa_busca_pct": 23.6,
+      "mapa_qtd": "10",
+      "taxa_mapa_pct": 11.24,
+      "adicao_qtd": "10",
+      "taxa_adicao_pct": 11.24,
+      "duracao_mediana_seg": 1
+    },
+    {
+      "dispositivo": "Outros",
+      "total_sessoes": "21",
+      "share_sessoes_pct": 0.08,
+      "bounce_qtd": "12",
+      "taxa_bounce_pct": 57.14,
+      "busca_qtd": "3",
+      "taxa_busca_pct": 14.29,
+      "mapa_qtd": "2",
+      "taxa_mapa_pct": 9.52,
+      "adicao_qtd": "2",
+      "taxa_adicao_pct": 9.52,
+      "duracao_mediana_seg": 16
+    }
+  ],
+  "comparativoScroll": [
+    {
+      "coorte": "Não Fez Busca de Endereço",
+      "total_sessoes": "21774",
+      "scroll_0_pct": 87.25,
+      "scroll_25_pct": 12.75,
+      "scroll_50_pct": 8.71,
+      "scroll_75_pct": 6.4,
+      "scroll_100_pct": 3.56
+    },
+    {
+      "coorte": "Fez Busca de Endereço",
+      "total_sessoes": "4168",
+      "scroll_0_pct": 16.82,
+      "scroll_25_pct": 83.18,
+      "scroll_50_pct": 72.05,
+      "scroll_75_pct": 60.53,
+      "scroll_100_pct": 22.89
+    }
+  ],
+  "scrollCruzado": [
+    {
+      "plataforma": "Desktop",
+      "status_busca": "Não Fez Busca",
+      "total_sessoes": "4306",
+      "scroll_0_pct": 82.54,
+      "scroll_25_pct": 17.46,
+      "scroll_50_pct": 12.52,
+      "scroll_75_pct": 9.99,
+      "scroll_100_pct": 5.18,
+      "duracao_mediana_seg": 0,
+      "taxa_adicao_carrinho_pct": 4.92
+    },
+    {
+      "plataforma": "Desktop",
+      "status_busca": "Fez Busca",
+      "total_sessoes": "2006",
+      "scroll_0_pct": 10.42,
+      "scroll_25_pct": 89.58,
+      "scroll_50_pct": 78.91,
+      "scroll_75_pct": 65.8,
+      "scroll_100_pct": 20.89,
+      "duracao_mediana_seg": 684.5,
+      "taxa_adicao_carrinho_pct": 35.89
+    },
+    {
+      "plataforma": "Mobile",
+      "status_busca": "Não Fez Busca",
+      "total_sessoes": "17468",
+      "scroll_0_pct": 88.41,
+      "scroll_25_pct": 11.59,
+      "scroll_50_pct": 7.77,
+      "scroll_75_pct": 5.51,
+      "scroll_100_pct": 3.17,
+      "duracao_mediana_seg": 0,
+      "taxa_adicao_carrinho_pct": 0.85
+    },
+    {
+      "plataforma": "Mobile",
+      "status_busca": "Fez Busca",
+      "total_sessoes": "2162",
+      "scroll_0_pct": 22.76,
+      "scroll_25_pct": 77.24,
+      "scroll_50_pct": 65.68,
+      "scroll_75_pct": 55.64,
+      "scroll_100_pct": 24.75,
+      "duracao_mediana_seg": 140.5,
+      "taxa_adicao_carrinho_pct": 12.9
+    }
+  ],
+  "mapaPorBusca": [
+    {
+      "status_busca": "Não Fez Busca",
+      "total_sessoes": "21774",
+      "sessoes_com_mapa": "286",
+      "pct_com_mapa": 1.31,
+      "media_interacoes_mapa": 0.2
+    },
+    {
+      "status_busca": "Fez Busca",
+      "total_sessoes": "4168",
+      "sessoes_com_mapa": "964",
+      "pct_com_mapa": 23.13,
+      "media_interacoes_mapa": 6.7
+    }
+  ],
+  "conversaoAdicao": [
+    {
+      "status_busca": "Não Fez Busca",
+      "total_sessoes": "21774",
+      "sessoes_com_item_adicionado": "360",
+      "taxa_conversao_adicao_pct": 1.65,
+      "total_itens_adicionados": "806"
+    },
+    {
+      "status_busca": "Fez Busca",
+      "total_sessoes": "4168",
+      "sessoes_com_item_adicionado": "999",
+      "taxa_conversao_adicao_pct": 23.97,
+      "total_itens_adicionados": "9835"
+    }
+  ],
+  "origemTrafego": [
+    {
+      "canal_aquisicao": "Meta Ads (Facebook/Instagram)",
+      "total_sessoes": "15194",
+      "share_pct": 58.57,
+      "taxa_bounce_pct": 82.49,
+      "taxa_busca_pct": 6.77
+    },
+    {
+      "canal_aquisicao": "Direto / Orgânico",
+      "total_sessoes": "5079",
+      "share_pct": 19.58,
+      "taxa_bounce_pct": 59.42,
+      "taxa_busca_pct": 27.6
+    },
+    {
+      "canal_aquisicao": "Google Ads",
+      "total_sessoes": "4484",
+      "share_pct": 17.28,
+      "taxa_bounce_pct": 51.25,
+      "taxa_busca_pct": 32.49
+    },
+    {
+      "canal_aquisicao": "Outras Origens",
+      "total_sessoes": "763",
+      "share_pct": 2.94,
+      "taxa_bounce_pct": 65.79,
+      "taxa_busca_pct": 19.4
+    },
+    {
+      "canal_aquisicao": "HubSpot E-mails",
+      "total_sessoes": "422",
+      "share_pct": 1.63,
+      "taxa_bounce_pct": 45.97,
+      "taxa_busca_pct": 31.52
+    }
+  ],
+  "tipologiaTermos": [
+    {
+      "categoria_busca": "Bairro / Região Local",
+      "volume_buscas": "9435",
+      "share_buscas_pct": 47.84,
+      "buscas_com_resultado": "9150",
+      "taxa_sucesso_pct": 96.98
+    },
+    {
+      "categoria_busca": "Endereço Completo com Número",
+      "volume_buscas": "3499",
+      "share_buscas_pct": 17.74,
+      "buscas_com_resultado": "3372",
+      "taxa_sucesso_pct": 96.37
+    },
+    {
+      "categoria_busca": "Logradouro isolado (sem número)",
+      "volume_buscas": "3238",
+      "share_buscas_pct": 16.42,
+      "buscas_com_resultado": "3188",
+      "taxa_sucesso_pct": 98.46
+    },
+    {
+      "categoria_busca": "Cidade / Município",
+      "volume_buscas": "1917",
+      "share_buscas_pct": 9.72,
+      "buscas_com_resultado": "1916",
+      "taxa_sucesso_pct": 99.95
+    },
+    {
+      "categoria_busca": "Termo Incompleto (<3 letras)",
+      "volume_buscas": "1084",
+      "share_buscas_pct": 5.5,
+      "buscas_com_resultado": "1080",
+      "taxa_sucesso_pct": 99.63
+    },
+    {
+      "categoria_busca": "Ponto de Interesse / Shopping / Metrô",
+      "volume_buscas": "548",
+      "share_buscas_pct": 2.78,
+      "buscas_com_resultado": "534",
+      "taxa_sucesso_pct": 97.45
+    }
+  ],
+  "topTermos": [
+    {
+      "termo": "rua",
+      "qtd": "175",
+      "com_resultado": "175",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "rio",
+      "qtd": "168",
+      "com_resultado": "168",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "rio de",
+      "qtd": "145",
+      "com_resultado": "145",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "rio de janeiro",
+      "qtd": "137",
+      "com_resultado": "137",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "são",
+      "qtd": "95",
+      "com_resultado": "95",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "são paulo",
+      "qtd": "79",
+      "com_resultado": "79",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "avenida",
+      "qtd": "72",
+      "com_resultado": "72",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "sao",
+      "qtd": "71",
+      "com_resultado": "71",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "barra",
+      "qtd": "61",
+      "com_resultado": "61",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": ", são paulo - sp, brasil",
+      "qtd": "57",
+      "com_resultado": "57",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "av paulista",
+      "qtd": "57",
+      "com_resultado": "57",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "campinas",
+      "qtd": "46",
+      "com_resultado": "46",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "pinheiros",
+      "qtd": "45",
+      "com_resultado": "45",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "guarulhos",
+      "qtd": "44",
+      "com_resultado": "44",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "vila",
+      "qtd": "42",
+      "com_resultado": "42",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "osasco",
+      "qtd": "41",
+      "com_resultado": "41",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "barra da tijuca",
+      "qtd": "36",
+      "com_resultado": "36",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "salvador",
+      "qtd": "36",
+      "com_resultado": "36",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "shopping",
+      "qtd": "34",
+      "com_resultado": "34",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "paulista",
+      "qtd": "34",
+      "com_resultado": "34",
+      "taxa_sucesso_pct": 100
+    }
+  ]
+}

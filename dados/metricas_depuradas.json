@@ -1,0 +1,390 @@
+{
+  "panoramaGeral": {
+    "total_sessoes": "25942",
+    "usuarios_unicos": "22910",
+    "total_bounce": "18546",
+    "taxa_bounce_pct": 71.49,
+    "total_com_busca": "4168",
+    "taxa_busca_pct": 16.07,
+    "total_com_mapa": "1250",
+    "taxa_mapa_pct": 4.82,
+    "total_com_adicao": "1359",
+    "taxa_adicao_pct": 5.24
+  },
+  "dispositivosGlobal": [
+    {
+      "dispositivo": "iOS (iPhone/iPad)",
+      "total_sessoes": "10373",
+      "share_pct": 39.99,
+      "taxa_bounce_pct": 80.54,
+      "taxa_busca_pct": 9.72,
+      "taxa_mapa_pct": 0.09,
+      "taxa_adicao_carrinho_pct": 2.01
+    },
+    {
+      "dispositivo": "Android",
+      "total_sessoes": "9257",
+      "share_pct": 35.68,
+      "taxa_bounce_pct": 73.94,
+      "taxa_busca_pct": 12.47,
+      "taxa_mapa_pct": 0.04,
+      "taxa_adicao_carrinho_pct": 2.37
+    },
+    {
+      "dispositivo": "Windows (Desktop)",
+      "total_sessoes": "5489",
+      "share_pct": 21.16,
+      "taxa_bounce_pct": 55.82,
+      "taxa_busca_pct": 30.39,
+      "taxa_mapa_pct": 18.66,
+      "taxa_adicao_carrinho_pct": 14.52
+    },
+    {
+      "dispositivo": "Mac OS X (Desktop)",
+      "total_sessoes": "713",
+      "share_pct": 2.75,
+      "taxa_bounce_pct": 31,
+      "taxa_busca_pct": 44.04,
+      "taxa_mapa_pct": 28.19,
+      "taxa_adicao_carrinho_pct": 17.25
+    },
+    {
+      "dispositivo": "Outros",
+      "total_sessoes": "110",
+      "share_pct": 0.42,
+      "taxa_bounce_pct": 56.36,
+      "taxa_busca_pct": 21.82,
+      "taxa_mapa_pct": 10.91,
+      "taxa_adicao_carrinho_pct": 10.91
+    }
+  ],
+  "dispositivosSemMeta": [
+    {
+      "dispositivo": "Windows (Desktop)",
+      "total_sessoes": "5281",
+      "share_pct": 49.13,
+      "taxa_bounce_pct": 55.97,
+      "taxa_busca_pct": 30.77,
+      "taxa_mapa_pct": 18.75,
+      "taxa_adicao_carrinho_pct": 14.88
+    },
+    {
+      "dispositivo": "Android",
+      "total_sessoes": "3572",
+      "share_pct": 33.23,
+      "taxa_bounce_pct": 63.21,
+      "taxa_busca_pct": 21.44,
+      "taxa_mapa_pct": 0.11,
+      "taxa_adicao_carrinho_pct": 4.26
+    },
+    {
+      "dispositivo": "iOS (iPhone/iPad)",
+      "total_sessoes": "1116",
+      "share_pct": 10.38,
+      "taxa_bounce_pct": 46.95,
+      "taxa_busca_pct": 37.63,
+      "taxa_mapa_pct": 0.54,
+      "taxa_adicao_carrinho_pct": 9.59
+    },
+    {
+      "dispositivo": "Mac OS X (Desktop)",
+      "total_sessoes": "683",
+      "share_pct": 6.35,
+      "taxa_bounce_pct": 31.92,
+      "taxa_busca_pct": 44.8,
+      "taxa_mapa_pct": 28.11,
+      "taxa_adicao_carrinho_pct": 17.57
+    },
+    {
+      "dispositivo": "Outros",
+      "total_sessoes": "96",
+      "share_pct": 0.89,
+      "taxa_bounce_pct": 58.33,
+      "taxa_busca_pct": 23.96,
+      "taxa_mapa_pct": 12.5,
+      "taxa_adicao_carrinho_pct": 11.46
+    }
+  ],
+  "scrollGeral": [
+    {
+      "coorte": "Sessões com Busca de Endereço",
+      "total_sessoes": "4168",
+      "scroll_0_pct": 16.82,
+      "scroll_25_pct": 83.18,
+      "scroll_50_pct": 72.05,
+      "scroll_75_pct": 60.53,
+      "scroll_100_pct": 22.89
+    },
+    {
+      "coorte": "Sessões sem Busca de Endereço",
+      "total_sessoes": "21774",
+      "scroll_0_pct": 87.25,
+      "scroll_25_pct": 12.75,
+      "scroll_50_pct": 8.71,
+      "scroll_75_pct": 6.4,
+      "scroll_100_pct": 3.56
+    }
+  ],
+  "scrollCruzado": [
+    {
+      "plataforma": "Desktop",
+      "status_busca": "Não Fez Busca",
+      "total_sessoes": "4306",
+      "scroll_0_pct": 82.54,
+      "scroll_25_pct": 17.46,
+      "scroll_50_pct": 12.52,
+      "scroll_75_pct": 9.99,
+      "scroll_100_pct": 5.18,
+      "duracao_mediana_seg": 0,
+      "taxa_adicao_carrinho_pct": 4.92
+    },
+    {
+      "plataforma": "Desktop",
+      "status_busca": "Fez Busca",
+      "total_sessoes": "2006",
+      "scroll_0_pct": 10.42,
+      "scroll_25_pct": 89.58,
+      "scroll_50_pct": 78.91,
+      "scroll_75_pct": 65.8,
+      "scroll_100_pct": 20.89,
+      "duracao_mediana_seg": 684.5,
+      "taxa_adicao_carrinho_pct": 35.89
+    },
+    {
+      "plataforma": "Mobile",
+      "status_busca": "Não Fez Busca",
+      "total_sessoes": "17468",
+      "scroll_0_pct": 88.41,
+      "scroll_25_pct": 11.59,
+      "scroll_50_pct": 7.77,
+      "scroll_75_pct": 5.51,
+      "scroll_100_pct": 3.17,
+      "duracao_mediana_seg": 0,
+      "taxa_adicao_carrinho_pct": 0.85
+    },
+    {
+      "plataforma": "Mobile",
+      "status_busca": "Fez Busca",
+      "total_sessoes": "2162",
+      "scroll_0_pct": 22.76,
+      "scroll_25_pct": 77.24,
+      "scroll_50_pct": 65.68,
+      "scroll_75_pct": 55.64,
+      "scroll_100_pct": 24.75,
+      "duracao_mediana_seg": 140.5,
+      "taxa_adicao_carrinho_pct": 12.9
+    }
+  ],
+  "conversaoAdicao": [
+    {
+      "status_busca": "Visitantes com Busca",
+      "sessoes_totais": "4168",
+      "sessoes_com_adicao": "999",
+      "taxa_conversao_adicao_pct": 23.97,
+      "total_itens_adicionados": "9835"
+    },
+    {
+      "status_busca": "Visitantes sem Busca",
+      "sessoes_totais": "21774",
+      "sessoes_com_adicao": "360",
+      "taxa_conversao_adicao_pct": 1.65,
+      "total_itens_adicionados": "806"
+    }
+  ],
+  "origemTrafego": [
+    {
+      "canal_aquisicao": "Meta Ads (Facebook/Instagram)",
+      "total_sessoes": "15194",
+      "share_pct": 58.57,
+      "taxa_bounce_pct": 82.49,
+      "taxa_busca_pct": 6.77
+    },
+    {
+      "canal_aquisicao": "Direto / Orgânico",
+      "total_sessoes": "5079",
+      "share_pct": 19.58,
+      "taxa_bounce_pct": 59.42,
+      "taxa_busca_pct": 27.6
+    },
+    {
+      "canal_aquisicao": "Google Ads",
+      "total_sessoes": "4484",
+      "share_pct": 17.28,
+      "taxa_bounce_pct": 51.25,
+      "taxa_busca_pct": 32.49
+    },
+    {
+      "canal_aquisicao": "Outras Origens",
+      "total_sessoes": "763",
+      "share_pct": 2.94,
+      "taxa_bounce_pct": 65.79,
+      "taxa_busca_pct": 19.4
+    },
+    {
+      "canal_aquisicao": "HubSpot E-mails",
+      "total_sessoes": "422",
+      "share_pct": 1.63,
+      "taxa_bounce_pct": 45.97,
+      "taxa_busca_pct": 31.52
+    }
+  ],
+  "tipologiaTermosDepurada": [
+    {
+      "categoria_busca": "Bairro / Região Local",
+      "volume_buscas": "9101",
+      "share_buscas_pct": 50.42,
+      "buscas_com_resultado": "8816",
+      "taxa_sucesso_pct": 96.87
+    },
+    {
+      "categoria_busca": "Endereço Completo com Número",
+      "volume_buscas": "3499",
+      "share_buscas_pct": 19.38,
+      "buscas_com_resultado": "3372",
+      "taxa_sucesso_pct": 96.37
+    },
+    {
+      "categoria_busca": "Logradouro Isolado (sem número)",
+      "volume_buscas": "2986",
+      "share_buscas_pct": 16.54,
+      "buscas_com_resultado": "2936",
+      "taxa_sucesso_pct": 98.33
+    },
+    {
+      "categoria_busca": "Cidade / Município",
+      "volume_buscas": "1917",
+      "share_buscas_pct": 10.62,
+      "buscas_com_resultado": "1916",
+      "taxa_sucesso_pct": 99.95
+    },
+    {
+      "categoria_busca": "Ponto de Interesse / Shopping / Metrô",
+      "volume_buscas": "548",
+      "share_buscas_pct": 3.04,
+      "buscas_com_resultado": "534",
+      "taxa_sucesso_pct": 97.45
+    }
+  ],
+  "topTermosDepurados": [
+    {
+      "termo": "rio de",
+      "qtd": "145",
+      "com_resultado": "145",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "rio de janeiro",
+      "qtd": "137",
+      "com_resultado": "137",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "são paulo",
+      "qtd": "79",
+      "com_resultado": "79",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "barra",
+      "qtd": "61",
+      "com_resultado": "61",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "av paulista",
+      "qtd": "57",
+      "com_resultado": "57",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": ", são paulo - sp, brasil",
+      "qtd": "57",
+      "com_resultado": "57",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "campinas",
+      "qtd": "46",
+      "com_resultado": "46",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "pinheiros",
+      "qtd": "45",
+      "com_resultado": "45",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "guarulhos",
+      "qtd": "44",
+      "com_resultado": "44",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "vila",
+      "qtd": "42",
+      "com_resultado": "42",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "osasco",
+      "qtd": "41",
+      "com_resultado": "41",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "salvador",
+      "qtd": "36",
+      "com_resultado": "36",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "barra da tijuca",
+      "qtd": "36",
+      "com_resultado": "36",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "paulista",
+      "qtd": "34",
+      "com_resultado": "34",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "shopping",
+      "qtd": "34",
+      "com_resultado": "34",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "curitiba",
+      "qtd": "33",
+      "com_resultado": "33",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "moema",
+      "qtd": "33",
+      "com_resultado": "33",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "faria lima",
+      "qtd": "32",
+      "com_resultado": "32",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "recife",
+      "qtd": "32",
+      "com_resultado": "32",
+      "taxa_sucesso_pct": 100
+    },
+    {
+      "termo": "alphaville",
+      "qtd": "32",
+      "com_resultado": "32",
+      "taxa_sucesso_pct": 100
+    }
+  ]
+}

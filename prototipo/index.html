@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aquiads - Início</title>
+  <style>
+    /* RESET & BASE */
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background-color: #FFFFFF; color: #111827; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+    
+    
+    /* DEMO BAR E VIEWPORT */
+    .demo-bar { background: #F1F5F9; border-bottom: 1px solid #E2E8F0; padding: 6px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748B; z-index: 2000; position: relative; }
+    .demo-switch { display: flex; background: #E2E8F0; border-radius: 6px; padding: 2px; gap: 2px; }
+    .demo-btn { border: none; background: transparent; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; cursor: pointer; color: #64748B; transition: all 0.2s; }
+    .demo-btn.active { background: #FFFFFF; color: #0F172A; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+    
+    .viewport-container { width: 100%; display: flex; flex-direction: column; flex: 1; transition: max-width 0.3s ease, margin 0.3s ease, border-radius 0.3s ease; position: relative; background: #FFFFFF; overflow-y: auto; overflow-x: hidden; }
+    
+    /* Quando ativo, restringe a largura como se fosse um celular real */
+    .viewport-container.mobile-mode { max-width: 400px; margin: 20px auto; border: 12px solid #111827; border-radius: 36px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); height: 800px; flex: none; }
+
+    /* HEADER */
+    header { height: 80px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #F3F4F6; }
+    .logo-text { font-size: 26px; font-weight: 800; color: #FF5400; cursor: pointer; text-decoration: none; }
+    .header-nav { display: flex; gap: 32px; height: 100%; }
+    .nav-tab { display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #6B7280; text-decoration: none; border-bottom: 3px solid transparent; cursor: pointer; }
+    .nav-tab.active { color: #111827; border-bottom-color: #FF5400; }
+    .header-actions { display: flex; align-items: center; gap: 16px; }
+    .user-profile { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: #F3F4F6; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .user-avatar { width: 24px; height: 24px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* HERO SEARCH BAR */
+    .hero-section { padding: 40px 20px 20px; display: flex; justify-content: center; z-index: 100; position: relative; }
+    .search-bar-container { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 100px; padding: 12px 16px 12px 32px; display: flex; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,0.06); width: 100%; max-width: 800px; position: relative; transition: all 0.3s; }
+    .search-bar-container.active { box-shadow: 0 8px 30px rgba(0,0,0,0.12); transform: scale(1.02); background: #F9FAFB; }
+    .search-block { flex: 1; display: flex; flex-direction: column; cursor: pointer; padding: 4px 16px; border-radius: 40px; border: 1px solid transparent; position: relative; }
+    .search-block:hover { background: #F3F4F6; }
+    .search-block.active { background: #FFFFFF; border: 1px solid #E5E7EB; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .search-label { font-size: 12px; font-weight: 700; color: #111827; margin-bottom: 2px; }
+    .search-value { font-size: 14px; color: #6B7280; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .search-value.filled { color: #111827; font-weight: 500; }
+    .search-divider { width: 1px; height: 32px; background: #E5E7EB; margin: 0 8px; }
+    .search-btn { background: #FF5400; color: #FFFFFF; border: none; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; margin-left: 8px; }
+    .search-btn:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(255, 84, 0, 0.3); }
+
+    /* POPOVERS */
+    .popover { display: none; position: absolute; top: calc(100% + 12px); background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 24px; box-shadow: 0 12px 36px rgba(0,0,0,0.1); padding: 24px; z-index: 200; }
+    .popover.active { display: block; animation: slideDown 0.2s ease forwards; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    #popover-onde { left: 0; width: 360px; }
+    .location-option { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; cursor: pointer; transition: background 0.2s; }
+    .location-option:hover { background: #F3F4F6; }
+    .location-icon { width: 40px; height: 40px; background: #F3F4F6; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #4B5563; font-size: 20px; }
+    .location-text { display: flex; flex-direction: column; }
+    .location-title { font-weight: 600; color: #111827; font-size: 14px; }
+    .location-subtitle { font-size: 12px; color: #6B7280; }
+
+    #popover-periodo { left: 30%; width: 320px; }
+    .period-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    .period-option { padding: 12px 16px; border: 1px solid #E5E7EB; border-radius: 12px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; font-weight: 500; font-size: 14px; }
+    .period-option:hover { background: #F9FAFB; border-color: #D1D5DB; }
+    .period-option.selected { border-color: #111827; border-width: 2px; background: #F9FAFB; }
+    .badge-pop { background: #FEF08A; color: #9A3412; font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 700; }
+    .badge-cost { background: #D1FAE5; color: #065F46; font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 700; }
+
+    #popover-inicio { left: 60%; width: 340px; }
+    .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .calendar-title { font-weight: 700; font-size: 15px; }
+    .cal-nav { background: transparent; border: none; cursor: pointer; padding: 4px; color: #6B7280; }
+    .cal-nav:hover { color: #111827; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+    .cal-day-name { font-size: 12px; color: #9CA3AF; font-weight: 600; margin-bottom: 8px; }
+    .cal-day { font-size: 14px; padding: 8px 0; border-radius: 50%; cursor: pointer; color: #111827; font-weight: 500; }
+    .cal-day:hover { background: #F3F4F6; }
+    .cal-day.selected { background: #111827; color: #FFFFFF; }
+
+    /* MAIN CONTENT */
+    main { flex: 1; padding: 20px 40px 80px; max-width: 1440px; margin: 0 auto; width: 100%; }
+    
+    .city-section { margin-bottom: 48px; position: relative; }
+    .city-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; cursor: pointer; }
+    .city-title { font-size: 22px; font-weight: 700; color: #111827; transition: color 0.2s; }
+    .city-header:hover .city-title { color: #FF5400; }
+
+    /* CAROUSEL */
+    .carousel-container { position: relative; margin: 0 -16px; padding: 0 16px; }
+    .carousel-track { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; padding-bottom: 16px; }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    
+    /* FLOATING ARROWS */
+    .arrow-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; border: 1px solid #E5E7EB; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.2s; color: #111827; font-weight: 700; font-size: 18px; }
+    .arrow-btn:hover { transform: translateY(-50%) scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+    .arrow-btn.left { left: 0px; }
+    .arrow-btn.right { right: 0px; }
+
+    /* PRODUCT CARDS (COPIED FROM RESULTADOS) */
+    .product-card { flex: 0 0 280px; background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+    .product-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-color: #D1D5DB; }
+    
+    .card-media { position: relative; width: 100%; height: 156px; background: #E5E7EB; overflow: hidden; }
+    .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .product-card:hover .card-img { transform: scale(1.03); }
+    
+    .badges-top { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .badge-group { display: flex; gap: 6px; }
+    .badge { padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .badge-white { background: rgba(255, 255, 255, 0.92); color: #1F2937; }
+    .badge-digital { background: #4F46E5; color: #FFFFFF; font-weight: 700; }
+    .badge-impresso { background: #059669; color: #FFFFFF; font-weight: 700; }
+
+    .card-body { padding: 14px 16px; display: flex; flex-direction: column; flex: 1; }
+    .card-title { font-size: 13px; font-weight: 800; color: #111827; text-transform: uppercase; line-height: 1.3; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-address { font-size: 11px; color: #6B7280; margin-bottom: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    
+    .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+    .metric { display: flex; flex-direction: column; gap: 2px; }
+    .metric-label { font-size: 11px; color: #6B7280; }
+    .metric-value { font-size: 14px; font-weight: 800; color: #111827; }
+    
+    .screens-row { font-size: 11px; color: #6B7280; margin-bottom: 14px; }
+    .price-row { margin-top: auto; margin-bottom: 14px; display: flex; align-items: baseline; gap: 4px; }
+    .price-amount { font-size: 17px; font-weight: 800; color: #111827; }
+    .price-period { font-size: 12px; color: #6B7280; font-weight: 500; }
+    
+    .btn-add { width: 100%; border: 1px solid #10B981; background: #FFFFFF; color: #10B981; border-radius: 8px; padding: 8px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-align: center; }
+    .btn-add:hover { background: #F0FDF4; }
+
+    /* OVERLAY */
+    #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(2px); z-index: 50; }
+    #overlay.active { display: block; }
+  
+    
+    /* MOBILE STYLES SCOPED TO CONTAINER */
+    .mobile-pill { display: none; }
+    .mobile-sheet { display: none; }
+
+    .viewport-container.mobile-mode header { padding: 0 20px; height: 64px; }
+    .viewport-container.mobile-mode .header-nav, .viewport-container.mobile-mode .header-actions { display: none; }
+    
+    .viewport-container.mobile-mode .hero-section { display: none; }
+    
+    /* Mobile Fake Search Pill */
+    .viewport-container.mobile-mode .mobile-pill {
+      display: flex; align-items: center; gap: 12px; margin: 16px 20px;
+      background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 100px;
+      padding: 12px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); cursor: pointer;
+    }
+    .mobile-pill-icon { color: #FF5400; font-weight: bold; }
+    .mobile-pill-text { display: flex; flex-direction: column; }
+    .mobile-pill-title { font-size: 13px; font-weight: 700; color: #111827; }
+    .mobile-pill-subtitle { font-size: 11px; color: #6B7280; }
+
+    /* Mobile Sheet */
+    .viewport-container.mobile-mode .mobile-sheet {
+      display: flex; flex-direction: column;
+      position: absolute; top: 100%; left: 0; width: 100%; height: 100%;
+      background: #F8F9FA; z-index: 1000; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .viewport-container.mobile-mode .mobile-sheet.open { transform: translateY(-100%); }
+    
+    .mobile-sheet-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: #FFFFFF; border-bottom: 1px solid #E5E7EB; }
+    .sheet-close { width: 32px; height: 32px; background: #F3F4F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; cursor: pointer; }
+    .sheet-title { font-weight: 700; font-size: 15px; }
+    .sheet-clear { font-size: 13px; font-weight: 600; color: #6B7280; text-decoration: underline; cursor: pointer; }
+    
+    .mobile-sheet-content { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 24px; }
+    
+    .sheet-group { background: #FFFFFF; border-radius: 16px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .sheet-group label { display: block; font-size: 16px; font-weight: 800; color: #111827; margin-bottom: 16px; }
+    
+    .sheet-input-wrapper { display: flex; align-items: center; gap: 8px; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; padding: 8px; }
+    .sheet-input-wrapper input { flex: 1; border: none; background: transparent; outline: none; font-size: 14px; padding: 8px; }
+    .btn-location { background: #FFFFFF; border-radius: 8px; padding: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); cursor: pointer; }
+    
+    .mob-period-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .mob-chip { border: 1px solid #E5E7EB; border-radius: 100px; padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+    .mob-chip.active { border-color: #111827; border-width: 2px; padding: 7px 15px; background: #F9FAFB; font-weight: 700; }
+    
+    .mob-date-input { width: 100%; border: 1px solid #E5E7EB; border-radius: 12px; padding: 12px; font-size: 14px; background: #F9FAFB; outline: none; }
+    
+    .mobile-sheet-footer { padding: 16px 20px; background: #FFFFFF; border-top: 1px solid #E5E7EB; }
+    .btn-buscar-mob { width: 100%; background: #FF5400; color: #FFFFFF; border: none; border-radius: 12px; padding: 14px; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+
+    .viewport-container.mobile-mode main { padding: 0 0 80px; }
+    .viewport-container.mobile-mode .city-section { margin-bottom: 32px; }
+    .viewport-container.mobile-mode .city-header { padding: 0 20px; }
+    .viewport-container.mobile-mode .city-title { font-size: 18px; }
+    .viewport-container.mobile-mode .carousel-container { padding: 0 20px; margin: 0; }
+    .viewport-container.mobile-mode .arrow-btn { display: none; }
+
+  
+    /* ESTADOS DESABILITADOS (NAVEGAÇÃO GUIADA) */
+    .search-btn:disabled, .btn-buscar-mob:disabled {
+      background: #E5E7EB !important;
+      color: #9CA3AF !important;
+      cursor: not-allowed !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+    
+    .sheet-group.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+      filter: grayscale(100%);
+      transition: all 0.3s ease;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="demo-bar">
+    <div>Protótipo Interativo</div>
+    <a href="https://app.notion.com/p/Diagn-stico-de-Comportamento-na-P-gina-de-Resultados-3f49587e413780bc9574e2cb2dfe8ed2?source=copy_link" target="_blank" style="text-decoration: none; color: #3B82F6; font-weight: 700; background: #DBEAFE; padding: 4px 10px; border-radius: 6px; display: flex; align-items: center; gap: 4px; font-size: 11px;">📘 Ver Documentação</a>
+    <div class="demo-switch">
+      <button class="demo-btn active" id="btnModeDesktop" onclick="setMode('desktop')">💻 Desktop</button>
+      <button class="demo-btn" id="btnModeMobile" onclick="setMode('mobile')">📱 Celular</button>
+    </div>
+  </div>
+  <div class="viewport-container" id="viewportContainer">
+
+
+  <!-- Overlay for clicking outside -->
+  <div id="overlay" onclick="closeAll()"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo-text">Aquiads®</a>
+    <div class="header-nav">
+      <div class="nav-tab active">OOH</div>
+      <div class="nav-tab">Digital</div>
+      <div class="nav-tab">TV</div>
+      <div class="nav-tab">Rádio</div>
+    </div>
+    <div class="header-actions">
+      <div class="user-profile">
+        <span>Assistente de anúncios</span>
+        <div class="user-avatar">🤖</div>
+      </div>
+      <div class="user-profile">
+        <span>Olá, FRANKS</span>
+        <div class="user-avatar">F</div>
+      </div>
+    </div>
+  </header>
+
+  
+  <!-- MOBILE FAKE PILL -->
+  <div class="mobile-pill" onclick="openMobileSheet()">
+    <div class="mobile-pill-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    </div>
+    <div class="mobile-pill-text">
+      <span class="mobile-pill-title">Onde você quer anunciar?</span>
+      <span class="mobile-pill-subtitle">Qualquer lugar • Qualquer período</span>
+    </div>
+  </div>
+
+  <!-- Hero Search -->
+  <div class="hero-section">
+    <div class="search-bar-container" id="searchBar">
+      
+      <!-- ONDE -->
+      <div class="search-block" id="block-onde" onclick="openPopover('onde')">
+        <span class="search-label">Onde</span>
+        <input type="text" class="search-value search-input" id="input-onde" placeholder="Onde você quer anunciar?" onkeyup="handleOndeKey(event)" onclick="event.stopPropagation(); if(!document.getElementById('popover-onde').classList.contains('active')) openPopover('onde');" autocomplete="off" style="border:none; background:transparent; outline:none; font-size:14px; font-weight:500; color:#111827; padding:0; width:100%;" />
+      </div>
+      <div class="search-divider"></div>
+      
+      <!-- PERIODO -->
+      <div class="search-block" id="block-periodo" onclick="openPopover('periodo')">
+        <span class="search-label">Período</span>
+        <span class="search-value" id="val-periodo">Adicione um período</span>
+      </div>
+      <div class="search-divider"></div>
+      
+      <!-- INICIO -->
+      <div class="search-block" id="block-inicio" onclick="openPopover('inicio')">
+        <span class="search-label">Início</span>
+        <span class="search-value" id="val-inicio">Quando começar?</span>
+      </div>
+      
+      <!-- BOTÃO BUSCAR -->
+      <button class="search-btn" disabled onclick="executarBusca()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+
+      <!-- POPOVERS -->
+      
+      <!-- POPOVER ONDE -->
+      <div class="popover" id="popover-onde">
+        <div class="location-option" onclick="setOnde('Sua localização atual', true)">
+          <div class="location-icon">📍</div>
+          <div class="location-text">
+            <span class="location-title">Usar localização atual</span>
+            <span class="location-subtitle">Busque pontos próximos a você</span>
+          </div>
+        </div>
+        <div style="margin: 12px 0; border-bottom: 1px solid #E5E7EB;"></div>
+        <div style="font-size: 12px; font-weight: 700; color: #9CA3AF; margin-bottom: 12px;">BUSCAS RECENTES</div>
+        <div class="location-option" onclick="setOnde('São Paulo, SP')">
+          <div class="location-icon" style="border-radius: 50%;">🕒</div>
+          <div class="location-text">
+            <span class="location-title">São Paulo, SP</span>
+          </div>
+        </div>
+        <div class="location-option" onclick="setOnde('Rio de Janeiro, RJ')">
+          <div class="location-icon" style="border-radius: 50%;">🕒</div>
+          <div class="location-text">
+            <span class="location-title">Rio de Janeiro, RJ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- POPOVER PERIODO -->
+      <div class="popover" id="popover-periodo">
+        <div class="period-grid">
+          <div class="period-option" onclick="setPeriodo('1 semana', 1)">1 semana</div>
+          <div class="period-option" onclick="setPeriodo('2 semanas', 2)">2 semanas</div>
+          <div class="period-option" onclick="setPeriodo('4 semanas', 4)">
+            4 semanas <span class="badge-pop">Mais popular</span>
+          </div>
+          <div class="period-option" onclick="setPeriodo('12 semanas', 12)">12 semanas</div>
+          <div class="period-option" onclick="setPeriodo('24 semanas', 24)">
+            24 semanas <span class="badge-cost">Melhor custo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- POPOVER INICIO -->
+      <div class="popover" id="popover-inicio">
+        <div class="calendar-header">
+          <button class="cal-nav" onclick="event.stopPropagation(); prevMonth()">◀</button>
+          <span class="calendar-title" id="cal-month-year">Novembro 2026</span>
+          <button class="cal-nav" onclick="event.stopPropagation(); nextMonth()">▶</button>
+        </div>
+        <div class="cal-grid" id="cal-days">
+          <!-- Calendar injected here -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main id="main-content">
+    <!-- Cities injected here -->
+  </main>
+  <!-- MOBILE SEARCH SHEET -->
+  <div class="mobile-sheet" id="mobileSheet">
+    <div class="mobile-sheet-header">
+      <div class="sheet-close" onclick="closeMobileSheet()">✕</div>
+      <div class="sheet-title">Buscar pontos</div>
+      <div class="sheet-clear" onclick="limparBusca()">Limpar</div>
+    </div>
+    
+    <div class="mobile-sheet-content">
+      <!-- ONDE -->
+      <div class="sheet-group">
+        <label>Onde</label>
+        <div class="sheet-input-wrapper">
+          <input type="text" id="mob-onde" placeholder="Sua localização atual, cidade ou endereço" oninput="syncMobile('onde', this.value)">
+          <div class="btn-location" onclick="setOnde('Minha localização atual')">📍</div>
+        </div>
+      </div>
+
+      <!-- PERÍODO -->
+      <div class="sheet-group disabled" id="mob-group-periodo">
+        <label>Período</label>
+        <div class="mob-period-chips">
+          <div class="mob-chip" onclick="setPeriodo('1 semana', 1); selectMobChip(this)">1 semana</div>
+          <div class="mob-chip" onclick="setPeriodo('2 semanas', 2); selectMobChip(this)">2 semanas</div>
+          <div class="mob-chip" onclick="setPeriodo('4 semanas', 4); selectMobChip(this)">4 semanas</div>
+          <div class="mob-chip" onclick="setPeriodo('12 semanas', 12); selectMobChip(this)">12 semanas</div>
+          <div class="mob-chip" onclick="setPeriodo('24 semanas', 24); selectMobChip(this)">24 semanas</div>
+        </div>
+      </div>
+
+      <!-- INÍCIO -->
+      <div class="sheet-group disabled" id="mob-group-inicio">
+        <label>Quando começar?</label>
+        <input type="date" id="mob-inicio" class="mob-date-input" onchange="syncMobile('inicio', this.value)">
+      </div>
+    </div>
+    
+    <div class="mobile-sheet-footer">
+      <button class="btn-buscar-mob" disabled onclick="executarBusca()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Buscar
+      </button>
+    </div>
+  </div>
+
+
+  
+  <script>
+    // ESTADO DA BUSCA
+    const searchState = { onde: '', periodoStr: '', periodoSemanas: 0, inicio: '' };
+    const isMobileMode = () => document.getElementById('viewportContainer').classList.contains('mobile-mode');
+
+    
+    function validateGuidedNav() {
+      const isOndeValid = searchState.onde && searchState.onde.trim() !== '';
+      const isPeriodoValid = searchState.periodoSemanas > 0;
+      const isInicioValid = searchState.inicio && searchState.inicio.trim() !== '';
+
+      const btnDesk = document.querySelector('.search-btn');
+      if (btnDesk) {
+        if (isOndeValid && isPeriodoValid && isInicioValid) btnDesk.removeAttribute('disabled');
+        else btnDesk.setAttribute('disabled', 'true');
+      }
+
+      const btnMob = document.querySelector('.btn-buscar-mob');
+      if (btnMob) {
+        if (isOndeValid && isPeriodoValid && isInicioValid) btnMob.removeAttribute('disabled');
+        else btnMob.setAttribute('disabled', 'true');
+      }
+
+      const grpPeriodo = document.getElementById('mob-group-periodo');
+      if (grpPeriodo) {
+        if (isOndeValid) grpPeriodo.classList.remove('disabled');
+        else grpPeriodo.classList.add('disabled');
+      }
+      
+      const grpInicio = document.getElementById('mob-group-inicio');
+      if (grpInicio) {
+        if (isOndeValid && isPeriodoValid) grpInicio.classList.remove('disabled');
+        else grpInicio.classList.add('disabled');
+      }
+    }
+
+    // DESKTOP POPOVERS
+    function closeAll() {
+      document.querySelectorAll('.popover').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.search-block').forEach(b => b.classList.remove('active'));
+      document.getElementById('searchBar').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+    }
+
+    function openPopover(step) {
+      if (isMobileMode()) return;
+      closeAll();
+      document.getElementById('searchBar').classList.add('active');
+      document.getElementById('overlay').classList.add('active');
+      document.getElementById('block-' + step).classList.add('active');
+      document.getElementById('popover-' + step).classList.add('active');
+      
+      if (step === 'inicio') {
+        renderCalendar();
+      }
+    }
+
+    function handleOndeKey(e) {
+      const val = e.target.value;
+      searchState.onde = val;
+      validateGuidedNav();
+      if(e.key === 'Enter' && val.trim() !== '') {
+        setTimeout(() => openPopover('periodo'), 150);
+      }
+    }
+
+    function setOnde(val) {
+      searchState.onde = val;
+      // desktop
+      const deskEl = document.getElementById('input-onde');
+      if (deskEl) deskEl.value = val;
+      // mobile
+      const mobEl = document.getElementById('mob-onde');
+      if (mobEl) mobEl.value = val;
+      
+      // Update fake pill text so it looks synced
+      const pillTitle = document.querySelector('.mobile-pill-title');
+      if (pillTitle) pillTitle.textContent = val;
+
+      validateGuidedNav();
+      if (!isMobileMode()) {
+        setTimeout(() => openPopover('periodo'), 150);
+      } else {
+        const sheet = document.getElementById('mobileSheet');
+        if (sheet && !sheet.classList.contains('open')) {
+          setTimeout(() => openMobileSheet(), 150);
+        }
+      }
+    }
+
+    function setPeriodo(str, num, el = null) {
+      searchState.periodoStr = str;
+      searchState.periodoSemanas = num;
+      
+      // desktop
+      const deskEl = document.getElementById('val-periodo');
+      if (deskEl) {
+        deskEl.textContent = str;
+        deskEl.classList.add('filled');
+      }
+      
+      if (!isMobileMode()) {
+        document.querySelectorAll('.period-option').forEach(opt => opt.classList.remove('selected'));
+        if (el) el.classList.add('selected');
+        else if (event && event.currentTarget) event.currentTarget.classList.add('selected');
+        
+        renderCarousels();
+        setTimeout(() => openPopover('inicio'), 150);
+      } else {
+        document.querySelectorAll('.mob-chip').forEach(opt => opt.classList.remove('active'));
+        if (el) el.classList.add('active');
+        else if (event && event.currentTarget) event.currentTarget.classList.add('active');
+        
+        renderCarousels();
+      }
+      validateGuidedNav();
+      
+      if (isMobileMode()) {
+        setTimeout(() => {
+          const mobIni = document.getElementById('mob-inicio');
+          if (mobIni && typeof mobIni.showPicker === 'function') {
+            try { mobIni.showPicker(); } catch(e) { mobIni.focus(); }
+          } else if (mobIni) {
+            mobIni.focus();
+          }
+        }, 100);
+      }
+    }
+
+    // CALENDÁRIO DESKTOP
+    let currentDate = new Date(2026, 10, 1);
+    let selectedDate = null;
+    const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    
+    function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      document.getElementById('cal-month-year').textContent = months[month] + ' ' + year;
+      
+      const grid = document.getElementById('cal-days');
+      grid.innerHTML = '';
+      
+      ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'].forEach(day => {
+        grid.innerHTML += `<div class="cal-day-name">${day}</div>`;
+      });
+      
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      
+      for (let i = 0; i < firstDay; i++) {
+        grid.innerHTML += `<div></div>`;
+      }
+      
+      for (let d = 1; d <= daysInMonth; d++) {
+        const isSelected = selectedDate && selectedDate.getDate() === d && selectedDate.getMonth() === month && selectedDate.getFullYear() === year;
+        grid.innerHTML += `<div class="cal-day ${isSelected ? 'selected' : ''}" onclick="event.stopPropagation(); selectDate(${year}, ${month}, ${d})">${d}</div>`;
+      }
+    }
+
+    function prevMonth() { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); }
+    function nextMonth() { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); }
+
+    function selectDate(y, m, d) {
+      selectedDate = new Date(y, m, d);
+      const str = `${String(d).padStart(2,'0')}/${String(m+1).padStart(2,'0')}/${y}`;
+      searchState.inicio = str;
+      const el = document.getElementById('val-inicio');
+      if (el) {
+        el.textContent = str;
+        el.classList.add('filled');
+      }
+      closeAll();
+      validateGuidedNav();
+    }
+
+    // MOBILE LOGIC
+    function openMobileSheet() {
+      document.getElementById('viewportContainer').style.overflow = 'hidden';
+      document.getElementById('mobileSheet').classList.add('open');
+    }
+    function closeMobileSheet() {
+      document.getElementById('viewportContainer').style.overflow = 'auto';
+      document.getElementById('mobileSheet').classList.remove('open');
+    }
+    function selectMobChip(el) {
+      // handled inside setPeriodo now
+    }
+    function syncMobile(field, value) {
+      searchState[field] = value;
+      if (field === 'onde') {
+        const deskEl = document.getElementById('input-onde');
+        if (deskEl) deskEl.value = value;
+      }
+      validateGuidedNav();
+    }
+    function limparBusca() {
+      document.getElementById('mob-onde').value = '';
+      document.querySelectorAll('.mob-chip').forEach(c => c.classList.remove('active'));
+      document.getElementById('mob-inicio').value = '';
+      searchState = { onde: '', periodoStr: '', periodoSemanas: 0, inicio: '' };
+      
+      const deskEl = document.getElementById('input-onde');
+      if (deskEl) deskEl.value = '';
+      const deskPer = document.getElementById('val-periodo');
+      if (deskPer) { deskPer.textContent = 'Adicione um período'; deskPer.classList.remove('filled'); }
+      const deskIni = document.getElementById('val-inicio');
+      if (deskIni) { deskIni.textContent = 'Quando começar?'; deskIni.classList.remove('filled'); }
+      validateGuidedNav();
+    }
+
+    // EXECUÇÃO
+    function executarBusca() {
+      if (!searchState.onde || searchState.onde.trim() === '') {
+        if (isMobileMode()) {
+            alert('Por favor, informe onde deseja anunciar.');
+        } else {
+            openPopover('onde');
+        }
+        return;
+      }
+      window.location.href = 'resultados.html';
+    }
+
+    // CARROSSEIS
+    const cities = ["São Paulo", "Rio de Janeiro", "Curitiba", "Porto Alegre", "Brasília"];
+    const baseProducts = [
+      { id: 1, title: 'Abrigo de Ônibus', addr: 'Av. Paulista, 1578', exibs: '12,5 mil', reach: '8,2 mil', freq: '1.5', format: 'impresso', screens: 1, basePrice: 1200 },
+      { id: 2, title: 'Elevador Residencial', addr: 'Rua Augusta, 400', exibs: '4,1 mil', reach: '1,2 mil', freq: '3.4', format: 'digital', screens: 4, basePrice: 350 },
+      { id: 3, title: 'Painel Digital', addr: 'Shopping JK Iguatemi', exibs: '45 mil', reach: '22 mil', freq: '2.0', format: 'digital', screens: 1, basePrice: 5000 },
+      { id: 4, title: 'Relógio de Rua', addr: 'Av. Faria Lima, 2232', exibs: '25 mil', reach: '15 mil', freq: '1.6', format: 'digital', screens: 2, basePrice: 2800 },
+      { id: 5, title: 'Mídia Aeroporto', addr: 'Aeroporto de Congonhas', exibs: '80 mil', reach: '60 mil', freq: '1.3', format: 'digital', screens: 10, basePrice: 12000 }
+    ];
+
+    function renderCarousels() {
+      const main = document.getElementById('main-content');
+      if (!main) return;
+      main.innerHTML = '';
+      
+      const sem = searchState.periodoSemanas || 1;
+
+      cities.forEach(city => {
+        let html = `
+          <div class="city-section">
+            <div class="city-header" onclick="setOnde('Pontos em ${city}')">
+              <div class="city-title">Pontos em ${city}</div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+            <div class="carousel-container">
+              <div class="arrow-btn left" onclick="scrollTrack(this, -300)">‹</div>
+              <div class="carousel-track">
+        `;
+
+        for (let i = 0; i < 6; i++) {
+          const p = baseProducts[i % 5];
+          const price = p.basePrice * sem;
+          const fmtPrice = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+          const fmtPeriod = sem === 1 ? '/ semana' : `/ ${sem} semanas`;
+          
+          html += `
+            <div class="product-card" onclick="setOnde('${city}')">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80" class="card-img" alt="Foto">
+                <div class="badges-top">
+                  <div class="badge-group">
+                    <div class="badge badge-white">📍 ${city}</div>
+                    <div class="badge ${p.format === 'digital' ? 'badge-digital' : 'badge-impresso'}">${p.format}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">${p.title}</div>
+                <div class="card-address">${p.addr}</div>
+                <div class="metrics-grid">
+                  <div class="metric"><span class="metric-label">Exibições ▷</span><span class="metric-value">${p.exibs}</span></div>
+                  <div class="metric"><span class="metric-label">Alcance 👤</span><span class="metric-value">${p.reach}</span></div>
+                  <div class="metric"><span class="metric-label">Freq. 🔄</span><span class="metric-value">${p.freq}</span></div>
+                </div>
+                <div class="screens-row">Qtd. de telas: ${p.screens}</div>
+                <div class="price-row">
+                  <span class="price-amount">${fmtPrice}</span>
+                  <span class="price-period">${fmtPeriod}</span>
+                </div>
+                <div class="btn-add">adicionar ponto</div>
+              </div>
+            </div>
+          `;
+        }
+
+        html += `
+              </div>
+              <div class="arrow-btn right" onclick="scrollTrack(this, 300)">›</div>
+            </div>
+          </div>
+        `;
+        main.innerHTML += html;
+      });
+    }
+
+    function scrollTrack(btn, amount) {
+      const track = btn.parentElement.querySelector('.carousel-track');
+      track.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+
+    // VIEWPORT SWITCHER
+    function setMode(mode) {
+      const container = document.getElementById('viewportContainer');
+      const btnDesk = document.getElementById('btnModeDesktop');
+      const btnMob = document.getElementById('btnModeMobile');
+
+      if (mode === 'mobile') {
+        container.classList.add('mobile-mode');
+        btnMob.classList.add('active');
+        btnDesk.classList.remove('active');
+      } else {
+        container.classList.remove('mobile-mode');
+        btnDesk.classList.add('active');
+        btnMob.classList.remove('active');
+        closeMobileSheet();
+      }
+    }
+
+    renderCarousels();
+  </script>
+
+  </div>
+</body>
+</html>

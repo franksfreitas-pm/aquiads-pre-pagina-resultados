@@ -1,2 +1,6 @@
 .env*
 mcp_config.json
+
+scripts/
+dados/
+

@@ -1,3 +1,8 @@
+// Carregamento can?nico do .env central (Zero Secrets in Code)
+require("fs").readFileSync("C:/Users/franks.freitas/Projetos/Aqui-Ads/product-os/.env", "utf8").split(/\r?\n/).forEach(line => {
+  const m = line.match(/^\s*([A-Za-z0-9_]+)\s*=\s*(.*?)\s*$/);
+  if (m && !m[1].startsWith("#") && !process.env[m[1]]) process.env[m[1]] = m[2];
+});
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const https = require('https');
 const fs = require('fs');
@@ -5,8 +10,8 @@ const path = require('path');
 const { DuckDBInstance } = require('@duckdb/node-api');
 
 const projectId = '3387295';
-const username = 'Antigravity_Assistant.da9305.mp-service-account';
-const password = 'cmUIJay6BSYyAc5x5M3OvZyeY2OfVL2i';
+const username = process.env.MIXPANEL_SERVICE_ACCOUNT_USER;
+const password = process.env.MIXPANEL_SERVICE_ACCOUNT_SECRET;
 const auth = Buffer.from(username + ':' + password).toString('base64');
 
 const DADOS_DIR = path.resolve(__dirname, '../dados');
